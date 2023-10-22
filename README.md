@@ -1,5 +1,5 @@
 # ShutOn
-A program for system administrators, used to turn off/on/reboot a large number of computers over a local network
+A program for system administrators, used to turn off/on/reboot a large number of computers in a local network
 
 ## Add computer
 For add computer, open file ips.py, and write: number computer, ip and MAC-adress
