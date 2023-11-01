@@ -1,5 +1,6 @@
 import os
 os.system('pip install customtkinter')
+os.system('pip install packaging')
 import webbrowser
 from customtkinter import *
 from ips import ips
