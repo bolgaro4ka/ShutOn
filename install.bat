@@ -1,4 +1,3 @@
-batch
 @echo off
 set "source_folder=%~dp0data"
 set "destination_folder=C:\Program Files\ShutOn"
