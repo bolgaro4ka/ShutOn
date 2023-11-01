@@ -6,7 +6,8 @@ For add computer, open file ips.py, and write: number computer, ip and MAC-adres
 
 
 ## Update v.1.2.0
-
+Changelog:
+  - Add installer
 
 ## Images
 ![image](https://github.com/bolgaro4ka/ShutOn/assets/123888141/1fa3dfbc-c388-42e0-8cd4-4e89bce829b8)
