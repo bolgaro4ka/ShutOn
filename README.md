@@ -1,6 +1,9 @@
 # ShutOn
 A program for system administrators, used to turn off/on/reboot a large number of computers in a local network
 
+## Software installation
+To install this software, you need to run the install.bat file as an administrator. After these steps, a ShutOn shortcut will appear on your desktop.
+
 ## Add computer
 For add computer, open file ips.py, and write: number computer, ip and MAC-adress
 
