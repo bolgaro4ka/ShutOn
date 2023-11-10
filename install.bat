@@ -12,3 +12,6 @@ xcopy /s /y "%source_folder%" "%destination_folder%"
 
 REM Копируем ярлык на рабочий стол
 copy "%shortcut_source%" "%shortcut_destination%"
+
+echo The installation program has completed its work.
+pause
