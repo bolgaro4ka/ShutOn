@@ -2,15 +2,31 @@ import os
 from ips import ips, group_name
 
 DEBUG=False
-comp = int(input('Какой компьютер выключить? <<< '))
-time=int(input('Через сколько секунд <<< '))
+print("Выберите действие:")
+
 print("1. Выключение")
 print("2. Перезагрузка")
 print("3. Включение")
 
 mode=input("Выберите: ")
 
+print()
+
+print("Для какого компьютера выполнять действие?")
+print("Параметр: (-1)- действие для всех.")
+print("Параметр: (2-15)- действие для отдельного компьютера.")
+comp = int(input('Выберите цель <<< '))
+
+print()
+
+time=int(input('Через сколько секунд выдполнить действие <<< '))
+
+print()
+
 comment=input('Комментарий: ')
+
+print()
+
 try:
 	mode=int(mode)
 	if mode == 1: mode = 's'
