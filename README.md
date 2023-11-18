@@ -8,13 +8,18 @@ To install this software, you need to run the install.bat file as an administrat
 For add computer, open file ips.py, and write: number computer, ip and MAC-adress
 
 
-## Update v.1.2.0
-Changelog:
-  - Add installer
+
 
 ## Images
-![image](https://github.com/bolgaro4ka/ShutOn/assets/123888141/1fa3dfbc-c388-42e0-8cd4-4e89bce829b8)
-![image](https://github.com/bolgaro4ka/ShutOn/assets/123888141/0b1c5fbc-a20e-432c-87dc-32e85cd04fa6)
+![image](https://github.com/bolgaro4ka/ShutOn/assets/123888141/1c75803c-0e69-41d7-aad5-315081d8dd82)
+![image](https://github.com/bolgaro4ka/ShutOn/assets/123888141/b5cb65e4-6eed-43e9-8658-7b5310b91392)
 
 ## ONLY FOR WINDOWS
+
+## Changelog
+Update v.1.2.0:
+  - Add installer
+Update v.1.3.0:
+  - Update interface
+
 ### By bolgaro4ka and Installer by Paia1nik
