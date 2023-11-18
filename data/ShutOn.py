@@ -15,7 +15,7 @@ set_widget_scaling(1.0)  # widget dimensions and text size
 #set_window_scaling(1.25)  # window geometry dimensions
 #deactivate_automatic_dpi_awareness()
 
-root.geometry('980x390')
+root.geometry('980x380')
 
 set_default_color_theme("green")
 root.option_add("*tearOff", FALSE)
