@@ -15,3 +15,6 @@ copy "%shortcut_source%" "%shortcut_destination%"
 
 echo The installation program has completed its work.
 pause
+
+pip install customtkinter
+pip install packaging
