@@ -3,7 +3,7 @@ import webbrowser
 from customtkinter import *
 from ips import ips
 import time
-
+import threading
 
 root = CTk()  # create CTk window like you do with the Tk window
 root.title("ShutOn")
@@ -31,6 +31,15 @@ info_text = """
 данное действие подробнее в readme.md
 """
 
+def shutdown_def(ip, mode, time, comment):
+    os.system(r'shutdown /m \\' + ip + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+
+def on_def(mac):
+    os.system(r'wakeup\WakeOnLanC.exe -w -mac ' + mac)
+
+def reboot_def(ip, mode, time, comment):
+    os.system(r'shutdown /m \\' + ip + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+
 def build():
     if comment_entry.get() == '': comentStr='def'
     else: comentStr=comment_entry.get()
@@ -51,45 +60,71 @@ def build():
         time.sleep(timeStr_noshow)
         reboot(mode='r', comment=comentStr, time=timeStr)
 
-    #if moves_combobox.get() == 'Спящий режим':
-    #    sleep()
+
 def shutdown(mode, comment, time):
+
     if shutall_checkbox.get() == 1:
+        threads = []
         for i in range(list(ips.items())[0][0], len(ips) + list(ips.items())[0][0]):
-            os.system(r'shutdown /m \\' + ips[i][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+            thread = threading.Thread(target=shutdown_def, args=(ips[i][0], mode, str(time), comment))
+            threads.append(thread)
+            thread.start()
+        
+        for thread in threads:
+            thread.join()
 
     elif single_power_off_combobox.get() != '-':
-        os.system(r'shutdown /m \\' + ips[int(single_power_off_combobox.get()[1:4])][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+        shutdown_def(ips[int(single_power_off_combobox.get()[1:4])][0], mode, str(time), comment)
 
     else:
+        threads=[]
         for i in range(int(diapoz_entry_from.get()), int(diapoz_entry_to.get())+1):
-            os.system(r'shutdown /m \\' + ips[i][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+            thread = threading.Thread(target=shutdown_def, args=(ips[i][0], mode, str(time), comment))
+            threads.append(thread)
+            thread.start()
+        
+        for thread in threads:
+            thread.join()
+
 
 def on():
     if shutall_checkbox.get() == 1:
         for i in range(list(ips.items())[0][0], len(ips) + list(ips.items())[0][0]):
-            os.system(r'wakeup\WakeOnLanC.exe -w -mac ' + ips[i][1])
+            on_def(ips[i][1])
 
     elif single_power_off_combobox.get() != '-':
-        os.system(r'wakeup\WakeOnLanC.exe -w -mac ' + ips[int(single_power_off_combobox.get()[1:4])][1])
+        on_def(ips[int(single_power_off_combobox.get()[1:4])][1])
 
     else:
         for i in range(int(diapoz_entry_from.get()), int(diapoz_entry_to.get())+1):
-            os.system(r'wakeup\WakeOnLanC.exe -w -mac ' + ips[i][1])
+            on_def(r'wakeup\WakeOnLanC.exe -w -mac ' + ips[i][1])
 
 
 def reboot(mode, comment, time):
     if shutall_checkbox.get() == 1:
+        threads=[]
         for i in range(list(ips.items())[0][0], len(ips) + list(ips.items())[0][0]):
-            os.system(r'shutdown /m \\' + ips[i][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+            thread = threading.Thread(target=reboot_def, args=(ips[i][0], mode, str(time), comment))
+            threads.append(thread)
+            thread.start()
+        
+        for thread in threads:
+            thread.join()
+            
 
     elif single_power_off_combobox.get() != '-':
-        os.system(r'shutdown /m \\' + ips[int(single_power_off_combobox.get()[1:4])][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+        reboot_def(ips[int(single_power_off_combobox.get()[1:4])][0], mode, str(time), comment)
 
     else:
+        threads=[]
         for i in range(int(diapoz_entry_from.get()), int(diapoz_entry_to.get())+1):
-            print(r'shutdown /m \\' + ips[i][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
-            os.system(r'shutdown /m \\' + ips[i][0] + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
+            thread = threading.Thread(target=reboot_def, args=(ips[i][0], mode, str(time), comment))
+            threads.append(thread)
+            thread.start()
+        
+        for thread in threads:
+            thread.join()
+            
 
 '''
 def sleep():
