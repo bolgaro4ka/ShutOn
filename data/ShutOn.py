@@ -5,6 +5,7 @@ from ips import ips
 import time
 import threading
 
+
 root = CTk()  # create CTk window like you do with the Tk window
 root.title("ShutOn")
 set_appearance_mode("dark")  # Modes: system (default), light, dark  # Themes: blue (default), dark-blue, green
@@ -30,6 +31,8 @@ info_text = """
 выполнить ряд действий над которыми выполняется 
 данное действие подробнее в readme.md
 """
+
+count_button_all = 0
 
 def shutdown_def(ip, mode, time, comment):
     os.system(r'shutdown /m \\' + ip + ' /' + mode + r' /t ' + str(time) + ' /c "' + comment + '"')
@@ -126,19 +129,21 @@ def reboot(mode, comment, time):
             thread.join()
             
 
-'''
-def sleep():
-    if shutall_checkbox.get() == 1:
-        for i in range(ips.items()[0][0], len(ips) + ips.items()[0][0]):
-            os.system(r'WakeOnLanC.exe -s1 -m ' + ips[i][0])
+def count_button_all_func():
+    global count_button_all
+    count_button_all += 1
 
-    elif single_power_off_combobox.get() != '-':
-        os.system(r'WakeOnLanC.exe -s1 -m ' + ips[int(single_power_off_combobox.get()[1:4])][0])
+    if count_button_all == 1:
+        try:
+            import pygame
+        except ModuleNotFoundError:
+            os.system('pip install pygame')
 
-    else:
-        for i in range(int(diapoz_entry_from.get()), int(diapoz_entry_to.get())+1):
-            os.system(r'WakeOnLanC.exe -s1 -m ' + ips[i][0])
-'''
+    if count_button_all == 40:
+        os.system('python wakeup/eastereggs/dvd.py')
+
+    if count_button_all == 60:
+        os.system('python wakeup/eastereggs/gameoflife.py')
 
 text_move = CTkLabel(root, text="Действие: ", font=('Arial', 32), justify="left")
 text_move.grid(column=0, row=0, columnspan=3, pady=[10,10])
@@ -182,7 +187,7 @@ or_label.grid(column=7, row=1, padx=15)
 shutall = CTkFrame(root)
 shutall.grid(column=8, row=1, rowspan=3, columnspan=5, padx=[0, 10], ipadx=25, ipady=8)
 
-shutall_checkbox = CTkCheckBox(shutall, text="Применить для всех")
+shutall_checkbox = CTkCheckBox(shutall, text="Применить для всех", command=count_button_all_func)
 shutall_checkbox.grid(column=0, row=0, rowspan=1, padx=[10, 0], pady=[20,0])
 
 shutall_infotext = CTkLabel(shutall, text=info_text, text_color="yellow", font=('Arial', 10))
