@@ -18,3 +18,4 @@ pause
 
 pip install customtkinter
 pip install packaging
+pip install pygame

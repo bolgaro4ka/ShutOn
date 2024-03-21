@@ -133,12 +133,6 @@ def count_button_all_func():
     global count_button_all
     count_button_all += 1
 
-    if count_button_all == 1:
-        try:
-            import pygame
-        except ModuleNotFoundError:
-            os.system('pip install pygame')
-
     if count_button_all == 40:
         os.system('python wakeup/eastereggs/dvd.py')
 
