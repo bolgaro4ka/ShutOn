@@ -17,10 +17,12 @@ For add computer, open file ips.py, and write: number computer, ip and MAC-adres
 ## ONLY FOR WINDOWS
 
 ## Changelog
-Update v.14.0:
+Update v.1.4.0:
   - Add secrets 🤫
+
 Update v.1.3.0:
   - Update interface
+
 Update v.1.2.0:
   - Add installer
 
